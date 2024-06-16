@@ -6,7 +6,7 @@
 #    By: inazaria <inazaria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/15 17:38:19 by inazaria          #+#    #+#              #
-#    Updated: 2024/06/15 20:10:30 by inazaria         ###   ########.fr        #
+#    Updated: 2024/06/16 05:20:40 by inazaria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,10 @@ class Solution:
     
         longest: str = ""
         for i in range(len(s)) :
-            odd_palindrome_substr: str = self.expandAroundCenter(s, i, i)
+
+            odd_palindrome_substr: str = self.expandAroundCenter(s, i, i) 
             even_palindrome_substr: str = self.expandAroundCenter(s, i, i + 1)
        
-            print(f"odd_palindrome_substr = {odd_palindrome_substr}")
-            print(f"even_palindrome_substr = {even_palindrome_substr}")
-            print("\n")
-
             if len(odd_palindrome_substr) > len(longest) :
                 longest = odd_palindrome_substr
 
