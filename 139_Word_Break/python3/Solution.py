@@ -6,7 +6,7 @@
 #    By: inazaria <inazaria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 01:43:05 by inazaria          #+#    #+#              #
-#    Updated: 2024/06/18 19:35:54 by inazaria         ###   ########.fr        #
+#    Updated: 2024/06/21 17:12:11 by inazaria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,36 @@ import sys
 from typing import List
 
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        
 
+    def isValidWord(self, s, index_s, word) -> bool :
+        len_word = len(word)
+        return s[index_s:index_s + len_word] == word
+
+
+    def backtrack(self, s: str, index_s: int, wordDict: List[str], dp: dict[int, bool]) -> bool :
+        
+        if index_s in dp :
+            return dp[index_s]
+
+        if index_s >= len(s) :
+            return True
+
+        for word in wordDict :
+            if self.isValidWord(s, index_s, word) :
+                dp[index_s] = True
+                if self.backtrack(s, index_s + len(word), wordDict, dp) :
+                    return True
+                
+        dp[index_s] = False
+
+        return False
+
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        if s in wordDict : 
+            return True
+
+        dp: dict[int, bool] = {}
+        return self.backtrack(s, 0, wordDict, dp)
 
 
 if __name__ == "__main__" :
