@@ -6,7 +6,7 @@
 #    By: inazaria <inazaria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/21 19:55:06 by inazaria          #+#    #+#              #
-#    Updated: 2024/06/21 22:46:34 by inazaria         ###   ########.fr        #
+#    Updated: 2024/06/22 17:04:14 by inazaria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,13 @@ class Solution:
             if sum([len(lst) for lst in perms[-1]]) == len(s) :
                 perms.append([])
                 print("the follow call was from line 32")
-                return (self.backtracking(s, 0, wordDict, {}, perms))    
+                self.backtracking(s, 0, wordDict, {}, perms)
 
 #        if index_s in memo :
 #            if memo[index_s] == True :
 #                perms[-1].append()
-  
+#                print("the follow call was from line 37")
+
         for word in wordDict :
             if index_s not in memo :
                 if (self.isValidWord(s, index_s, word)) :
@@ -44,14 +45,17 @@ class Solution:
 
             if index_s in memo and memo[index_s] == True :
                 print("the follow call was from line 46")
-                return (self.backtracking(s, index_s + len(word), wordDict, memo, perms))
-                     
-    
+                self.backtracking(s, index_s + len(word), wordDict, memo, perms)
+                        
+
         if len(perms[-1]) > 0 :
-            memo[index_s] = False
             wrongWord = perms[-1].pop(-1)
-            print("the follow call was from line 53")
+            memo[index_s - len(wrongWord)] = False
+            memo[index_s] = False
+            print("the follow call was from line 55")
             return (self.backtracking(s, index_s - len(wrongWord), wordDict, memo, perms))
+
+        return []
 
 
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
@@ -85,4 +89,4 @@ if __name__ == "__main__" :
         print("Example : python3 Solution \"catsandog\" \"[\"cats\",\"dog\",\"sand\",\"and\",\"cat\"]")
     
     answer: list[str] = Solution().wordBreak(string, wordDict)
-    print(f"string = {string}\nwordDict = {wordDict}\nanswer = {answer}")
+    print(f"\nstring = {string}\nwordDict = {wordDict}\nanswer = {answer}")

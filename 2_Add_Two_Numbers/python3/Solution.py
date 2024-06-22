@@ -6,7 +6,7 @@
 #    By: inazaria <inazaria@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/16 02:18:16 by inazaria          #+#    #+#              #
-#    Updated: 2024/06/16 06:48:56 by inazaria         ###   ########.fr        #
+#    Updated: 2024/06/22 20:13:39 by inazaria         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ if __name__ == "__main__" :
 
     except Exception as e :
         print(f"Error : {e}")        
-        print(f"\nUsage : python3 Solution.py <list1> <list2")
+        print(f"\nUsage : python3 Solution.py <list1> <list2>")
         print("Example : python Solution.py '[1,6,2]' '[1,4,5]' ")
         sys.exit(1)
 
